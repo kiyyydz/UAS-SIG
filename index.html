@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>UAS SIG</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+    <script>
+      /* Initial Map */
+      //lat, long, zoom (the initial view can be determined from Google Earth)
+      var map = L.map("map").setView([-7.9, 110.45], 10);
+
+      /* Tile Basemap */
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Tiles &copy; Zakiy RN &mdash; 23611067 Statistics Program Study at Universitas Islam Indonesia",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution:
+          'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+      });
+
+      Esri_WorldImagery.addTo(map); //Calls the basemap to be displayed when the page is loaded
+
+      /* Control Layer */
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri WorldImagery": Esri_WorldImagery,
+      };
+
+      var Layers = {};
+      var layerControl = L.control.layers(baseMaps, Layers, { collapsed: false });
+      layerControl.addTo(map);
+
+      // custom marker
+      var tokoRoti = L.icon({
+        iconUrl: "https://tse1.mm.bing.net/th?id=OIP.rQzzWsdIRrsuh0eZHtLamgHaHa&pid=Api&P=0&h=180",
+        iconSize: [40, 40],
+      });
+
+      var marker0 = L.marker([-6.2663, 106.813], { icon: tokoRoti });
+      marker0.bindPopup("Seven Grain");
+      marker0.bindTooltip("Jl. Mampang Prapatan No. 151, Jakarta Selatan, Jakarta 12760");
+      marker0.addTo(map);
+
+      var satu = L.marker([-6.2958, 106.8177], { icon: tokoRoti });
+      satu.bindPopup("Barley Bakery and Cake");
+      satu.bindTooltip("Cilandak KKO Raya No.47, Jakarta Selatan, Jakarta 12550");
+      satu.addTo(map);
+
+      var dua = L.marker([-6.2635, 106.8154], { icon: tokoRoti });
+      dua.bindPopup("Bittersweet By Najla");
+      dua.bindTooltip("Jl. Kemang Selatan, Kecamatan Pasar Minggu, Jakarta 12560");
+      dua.addTo(map);
+
+      var tiga = L.marker([-6.2413, 106.7993], { icon: tokoRoti });
+      tiga.bindPopup("Clairmont Patisserie");
+      tiga.bindTooltip("Jl. Gandaria I No. 73, Jakarta Selatan");
+      tiga.addTo(map);
+
+      var empat = L.marker([-6.2676, 106.8088], { icon: tokoRoti });
+      empat.bindPopup("Châteraisé");
+      empat.bindTooltip("Lippo Mall Kemang, Ground Floor, Kemang Village, Jakarta Selatan");
+      empat.addTo(map);
+
+      var lima = L.marker([-6.2256, 106.7947], { icon: tokoRoti });
+      lima.bindPopup("Francis Artisan Bakery");
+      lima.bindTooltip("Jl. Sultan Iskandar Muda, Kebayoran Lama Selatan, Jakarta 12240");
+      lima.addTo(map);
+
+      var enam = L.marker([-6.2602, 106.8153], { icon: tokoRoti });
+      enam.bindPopup("ANIMO bread culture");
+      enam.bindTooltip("Jl. Kemang Raya 69C, Jakarta Selatan");
+      enam.addTo(map);
+
+      var tujuh = L.marker([-6.2655, 106.8113], { icon: tokoRoti });
+      tujuh.bindPopup("Levant Boulangerie");
+      tujuh.bindTooltip("Jl. Benda Raya 12A (Kemang), Jakarta Selatan");
+      tujuh.addTo(map);
+
+      var delapan = L.marker([-6.2421, 106.8121], { icon: tokoRoti });
+      delapan.bindPopup("Ann's Bakehouse");
+      delapan.bindTooltip("Jl. Sungai Sambas III No. 12, Jakarta Selatan");
+      delapan.addTo(map);
+
+      var sembilan = L.marker([-6.2997, 106.8079], { icon: tokoRoti });
+      sembilan.bindPopup("BEAU Bakery");
+      sembilan.bindTooltip("Jl. Cikajang No.29, Senopati, Jakarta Selatan");
+      sembilan.addTo(map);
+
+      var sepuluh = L.marker([-6.2574, 106.8002], { icon: tokoRoti });
+      sepuluh.bindPopup("Union Bakery");
+      sepuluh.bindTooltip("Plaza Senayan, Basement, Kebayoran Baru, Jakarta Selatan");
+      sepuluh.addTo(map);
+
+      var sebelas = L.marker([-6.2277, 106.8106], { icon: tokoRoti });
+      sebelas.bindPopup("Tous Les Jours");
+      sebelas.bindTooltip("Gandaria City Mall, Jl. Sultan Iskandar Muda, Jakarta Selatan");
+      sebelas.addTo(map);
+
+      var duabelas = L.marker([-6.2435, 106.8229], { icon: tokoRoti });
+      duabelas.bindPopup("The Harvest Cakes");
+      duabelas.bindTooltip("Jl. Senopati Raya No.47, Jakarta Selatan");
+      duabelas.addTo(map);
+
+      var tigabelas = L.marker([-6.2448, 106.8124], { icon: tokoRoti });
+      tigabelas.bindPopup("AMKC Atelier");
+      tigabelas.bindTooltip("Jl. Cikajang No.13, Senopati, Jakarta Selatan");
+      tigabelas.addTo(map);
+
+      var empatbelas = L.marker([-6.2953, 106.8201], { icon: tokoRoti });
+      empatbelas.bindPopup("Mom’s Bakery");
+      empatbelas.bindTooltip("Jl. Kemang Selatan VIII No.55, Jakarta Selatan");
+      empatbelas.addTo(map);
+
+      var limabelas = L.marker([-6.2523, 106.8089], { icon: tokoRoti });
+      limabelas.bindPopup("Eric Kayser Artisan Boulanger");
+      limabelas.bindTooltip("Pacific Place Mall, SCBD, Jakarta Selatan");
+      limabelas.addTo(map);
+
+      var enambelas = L.marker([-6.2538, 106.8194], { icon: tokoRoti });
+      enambelas.bindPopup("Komugi Bakery");
+      enambelas.bindTooltip("Senayan City, Lt. Lower Ground, Jakarta Selatan");
+      enambelas.addTo(map);
+
+      var tujuhbelas = L.marker([-6.2501, 106.8199], { icon: tokoRoti });
+      tujuhbelas.bindPopup("Bakerzin");
+      tujuhbelas.bindTooltip("Plaza Senayan Arcadia, Jakarta Selatan");
+      tujuhbelas.addTo(map);
+
+      var delapanbelas = L.marker([-6.2756, 106.8212], { icon: tokoRoti });
+      delapanbelas.bindPopup("Hokkaido Baked Cheese Tart");
+      delapanbelas.bindTooltip("Pondok Indah Mall 2, Jakarta Selatan");
+      delapanbelas.addTo(map);
+
+      var sembilanbelas = L.marker([-6.2644, 106.8112], { icon: tokoRoti });
+      sembilanbelas.bindPopup("Sophie Authentique");
+      sembilanbelas.bindTooltip("Jl. Kemang Raya No.55, Jakarta Selatan");
+      sembilanbelas.addTo(map);
+
+      var duapuluh = L.marker([-6.2723, 106.8021], { icon: tokoRoti });
+      duapuluh.bindPopup("Kitchenette");
+      duapuluh.bindTooltip("Pacific Place Mall, Jakarta Selatan");
+      duapuluh.addTo(map);
+
+      var duapuluhsatu = L.marker([-6.2254, 106.8123], { icon: tokoRoti });
+      duapuluhsatu.bindPopup("Fabrica by Artisan Bread");
+      duapuluhsatu.bindTooltip("Jl. Wolter Monginsidi No.50, Jakarta Selatan");
+      duapuluhsatu.addTo(map);
+
+      var duapuluhdua = L.marker([-6.2823, 106.8104], { icon: tokoRoti });
+      duapuluhdua.bindPopup("Pantry by Plaza Indonesia");
+      duapuluhdua.bindTooltip("Jl. Kemang Raya No.55A, Jakarta Selatan");
+      duapuluhdua.addTo(map);
+
+      var duapuluhtiga = L.marker([-6.2787, 106.8121], { icon: tokoRoti });
+      duapuluhtiga.bindPopup("Mandarin Bakery");
+      duapuluhtiga.bindTooltip("Lippo Mall Kemang, Jakarta Selatan");
+      duapuluhtiga.addTo(map);
+
+      var duapuluhempat = L.marker([-6.2924, 106.8134], { icon: tokoRoti });
+      duapuluhempat.bindPopup("Bonjour Bread");
+      duapuluhempat.bindTooltip("Kemang Village, Jakarta Selatan");
+      duapuluhempat.addTo(map);
+
+      var duapuluhlima = L.marker([-6.2483, 106.8027], { icon: tokoRoti });
+      duapuluhlima.bindPopup("Paul Bakery");
+      duapuluhlima.bindTooltip("Senayan City Mall, Jakarta Selatan");
+      duapuluhlima.addTo(map);
+
+      var duapuluhenam = L.marker([-6.2451, 106.8072], { icon: tokoRoti });
+      duapuluhenam.bindPopup("BreadTalk");
+      duapuluhenam.bindTooltip("Plaza Senayan, Jakarta Selatan");
+      duapuluhenam.addTo(map);
+
+      var duapuluhtujuh = L.marker([-6.2812, 106.8019], { icon: tokoRoti });
+      duapuluhtujuh.bindPopup("Bakmi Gading Permai");
+      duapuluhtujuh.bindTooltip("Lippo Mall Kemang Village, Jakarta Selatan");
+      duapuluhtujuh.addTo(map);
+
+      var duapuluhdelapan = L.marker([-6.2539, 106.7991], { icon: tokoRoti });
+      duapuluhdelapan.bindPopup("Pantry by Mandarin");
+      duapuluhdelapan.bindTooltip("Senayan Arcadia, Jakarta Selatan");
+      duapuluhdelapan.addTo(map);
+
+      var duapuluhsembilan = L.marker([-6.2659, 106.8134], { icon: tokoRoti });
+      duapuluhsembilan.bindPopup("Caffe Milano");
+      duapuluhsembilan.bindTooltip("Pacific Place Mall, Jakarta Selatan");
+      duapuluhsembilan.addTo(map);
+
+      var tigapuluh = L.marker([-6.2701, 106.8057], { icon: tokoRoti });
+      tigapuluh.bindPopup("J.CO Donuts & Coffee");
+      tigapuluh.bindTooltip("Senayan City, Jakarta Selatan");
+      tigapuluh.addTo(map);
+    </script>
+     
+  </body>
+</html>
